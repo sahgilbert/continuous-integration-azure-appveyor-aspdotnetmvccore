@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimonGilbert.Blog", "SimonGilbert.Blog\SimonGilbert.Blog.csproj", "{7DC24DCA-0CC5-4144-B6D2-5B794733EC2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8E72683-A484-4B36-AD0D-76EBE710F034}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DC24DCA-0CC5-4144-B6D2-5B794733EC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC24DCA-0CC5-4144-B6D2-5B794733EC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC24DCA-0CC5-4144-B6D2-5B794733EC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC24DCA-0CC5-4144-B6D2-5B794733EC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

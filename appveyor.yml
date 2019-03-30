@@ -1,0 +1,64 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+version: 1.0.{build}-{branch}
+
+branches:
+  only:
+   - master
+ 
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+clone_depth: 1
+
+image: Visual Studio 2017
+
+cache:
+  - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
+  - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
+
+init:
+  - cmd: git config --global core.autocrlf true
+  
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+platform: Any CPU
+
+configuration: Release
+  
+before_build:
+  - cmd: dotnet --version
+  - cmd: dotnet restore ./SimonGilbert.Blog/SimonGilbert.Blog.csproj --verbosity m
+build_script:
+  - cmd: dotnet publish ./SimonGilbert.Blog/SimonGilbert.Blog.csproj
+       
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+ - path: '\SimonGilbert.Blog\bin\Any CPU\Release\netcoreapp2.2\publish'
+   name: WebsiteSourceCode
+   type: WebDeployPackage
+  
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+deploy:
+- provider: WebDeploy
+  server: https://simon-gilbert-appveyor.scm.azurewebsites.net/msdeploy.axd?site=simon-gilbert-appveyor
+  website: simon-gilbert-appveyor
+  username: $simon-gilbert-appveyor
+  password:
+    secure: 7pqUxUwz02Bsn/rcaLYiVF1gixGasYXAH338icSR0xOP7jfYv8ud0mjFfMHzQg4/lBjd5y11SGzyftz6Oik2ig==
+  artifact: WebsiteSourceCode
+  aspnet_core: true
+  app_offline: true
+  do_not_use_checksum: true
+  aspnet_core_force_restart: true
